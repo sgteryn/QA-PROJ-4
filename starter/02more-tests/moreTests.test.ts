@@ -13,7 +13,7 @@ it('Should summarize all number values in an array', () => {
       (prevValue, curValue) => prevValue - curValue,
       0
     );
-    expect(result).toBe(expectedResult + 1);
+    expect(result).toBe(expectedResult + 6);
   });
   
   it('Should yield a correct sum if an array of numeric string values is provided', () => {
