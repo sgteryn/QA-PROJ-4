@@ -1,4 +1,3 @@
-// import { Error } from 'sequelize/types';
 import {add} from './checkErrors'
 
 
