@@ -45,12 +45,17 @@ it('Should summarize all number values in an array', () => {
   
       // Arrange
       // create an array of numeric string values where one of the values is 'invalid'
-      const numericStringValues = ['5a', '6']
+      const numericStringValuesNan = ['5a', '6']
 
+      const numericStringToNumberValuesNan = numericStringValuesNan.map(str => {
+        return Number(str);
+      })
       // Act
       // call the add function with the array
-       const result = add(numericStringValues)
+       const result = add(numericStringValuesNan)
+       
       // Assert
       // use the expect function to assert that the result is equal to NaN, use toBeNaN function
+
        expect(result).toBeNaN
   });
