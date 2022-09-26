@@ -21,7 +21,7 @@ export class loginPage {
 
     passwordTextBox: By = By.id('password')
 
-    constructor(pDriver: WebDriver, url: string) {
+    constructor(driver: WebDriver, url: string) {
         this.driver = driver 
         this.url = url 
     }
