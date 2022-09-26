@@ -12,26 +12,26 @@ import {
   .build();
 
 export class loginPage {
-    pDriver: WebDriver; 
+    driver: WebDriver; 
     url: string = 'https://www.saucedemo.com'
 
-    loginBtn = driver.findElement(By.xpath("//*[@id='login-button']"))
+    loginBtn: By = By.xpath("//*[@id='login-button']")
 
-    usernameTextBox = driver.findElement(By.css("input[name='user-name']"))
+    usernameTextBox: By = By.id('user-name')
 
-    passwordTextBox = driver.findElement(By.css("input[name='password']"))
+    passwordTextBox: By = By.id('password')
 
     constructor(pDriver: WebDriver, url: string) {
-        this.pDriver = pDriver 
+        this.driver = driver 
         this.url = url 
     }
     async navigate() {
-        await this.pDriver.get(this.url)
+        await this.driver.get(this.url)
     }
     async getElement(elementBy: By): Promise<WebElement> {
-        await this.pDriver.wait(until.elementLocated(elementBy))
-        let element = await this.pDriver.findElement(elementBy)
-        await this.pDriver.wait(until.elementIsVisible(element))
+        await this.driver.wait(until.elementLocated(elementBy))
+        let element = await this.driver.findElement(elementBy)
+        await this.driver.wait(until.elementIsVisible(element))
         return element
     } async setInput(elementBy: By, keys: any): Promise<void> {
     let input = await this.getElement(elementBy)
@@ -39,12 +39,12 @@ export class loginPage {
         return input.sendKeys(keys);
     }
     async sendKeys(elementBy: By, keys) {
-      await this.pDriver.wait(until.elementLocated(elementBy))
+      await this.driver.wait(until.elementLocated(elementBy))
       return driver.findElement(elementBy).sendKeys(keys)
     }
-// async getText(elementBy: By) {
-//     await this.pDriver.wait(until.elementLocated(elementBy))
-//     return this.pDriver.findElement(elementBy).getText()
-// }
+async getText(elementBy: By) {
+    await this.driver.wait(until.elementLocated(elementBy))
+    return this.driver.findElement(elementBy).getText()
+}
 
 }
