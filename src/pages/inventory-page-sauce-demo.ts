@@ -6,6 +6,7 @@ import {
     WebDriver,
     WebElement,
   } from "selenium-webdriver";
+import { titleIs } from "selenium-webdriver/lib/until";
 
   const driver: WebDriver = new Builder()
   .withCapabilities(Capabilities.chrome())
@@ -47,6 +48,16 @@ export class inventoryPage {
        await this.driver.wait(until.elementLocated(elementBy))
        return this.driver.findElement(elementBy).getText()
 }
-
-
+    async addBackpackToCart(elementBy: By){
+        await this.driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Sauce Labs Backpack')]"))).click()
+        let addToCartBtn = await this.driver.findElement(By.xpath("//*[contains(text(),'Add to cart')]"))
+        await this.driver.wait(until.elementIsVisible(addToCartBtn)).click()
+        return await this.driver.get(this.url)
+    }   
+    async addBikeLightToCart(elementBy: By){
+        await this.driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Sauce Labs Bike Light')]"))).click()
+        let addToCartBtn = await this.driver.findElement(By.xpath("//*[contains(text(),'Add to cart')]"))
+        await this.driver.wait(until.elementIsVisible(addToCartBtn)).click()
+        return await this.driver.get(this.url)
+    }   
 }
