@@ -61,6 +61,49 @@ test('basket contains three items in cart', async () => {
     expect(threeInCart).toBe('3')
 })
 
+test('sauce lab shirt removed from cart and only backpack and bike light remain', async () => {
+    await driver.findElement(By.css("a[class='shopping_cart_link']")).click()
+    await driver.findElement(By.css('button[name="remove-sauce-labs-t-shirt"]')).click()
+    let cart = await driver.findElement(By.css("div[class='cart_list']")).getText()
+   
+    expect(cart).toContain('Sauce Labs Bike Light')
+    expect(cart).toContain('Sauce Labs Backpack')
+})
+
+test('click continue shopping, remove bike light from inventory page, navigate to cart Page and verify only backpack remains in cart', async () => {
+    await driver.findElement(By.css("button[id='continue-shopping']")).click()
+    await driver.findElement(By.css('button[id="remove-sauce-labs-bike-light"]')).click()
+    await driver.findElement(By.css("a[class='shopping_cart_link']")).click()
+    let cart = await driver.findElement(By.css("div[class='cart_list']")).getText()
+   
+    expect(cart).toContain('Sauce Labs Backpack')
+})
+
+test('click checkout page, at chekout page', async () => {
+    await driver.findElement(By.css('button[id="checkout"]')).click()
+   let pageTitle = await driver.findElement(By.css("span[class='title']")).getText()
+        
+        expect(pageTitle).toBe('Checkout: Your Information')
+})
+
+test('Locate First Name, Last Name and Postal Code text box elements and verify that they are present on the page', async () => {
+    await driver.wait(until.elementLocated(By.id("first-name")))
+    await driver.wait(until.elementLocated(By.id("last-name")))
+    await driver.wait(until.elementLocated(By.id("postal-code")))
+    let firstNameBox = await driver.findElement(By.id("first-name"))
+    let lastNameBox = await driver.findElement(By.id("last-name"))
+    let postalCodeBox = await driver.findElement(By.id("postal-code"))
+        
+        expect(firstNameBox && lastNameBox && postalCodeBox).toBeTruthy()
+})
+
+test('provide users information', async () => {
+    await driver.findElement(By.id("first-name")).sendKeys('John\n')
+    await driver.findElement(By.id("last-name")).sendKeys('Jingleheimerschmidt\n')
+    await driver.findElement(By.id("postal-code")).sendKeys('48233\n')
+    await driver.findElement(By.id("continue")).click()
+})
+
 afterAll(async () => {
     await driver.quit()
 })
