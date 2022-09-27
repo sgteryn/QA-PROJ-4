@@ -25,6 +25,7 @@ export class inventoryPage {
         this.driver = driver 
         this.url = url 
     }
+
     async navigate() {
         await this.driver.get(this.url)
     }

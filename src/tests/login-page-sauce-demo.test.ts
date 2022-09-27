@@ -47,10 +47,6 @@ test('ability to login', async () => {
 
 
 test('user at inventory after logging in', async () => {
-    await driver.get('https://www.saucedemo.com')
-    await driver.findElement(By.css("input[name='user-name']")).sendKeys('standard_user\n')
-    await driver.findElement(By.css("input[name='password']")).sendKeys('secret_sauce\n')
-    await driver.findElement(By.id("login-button")).click()
     function loggedInAtInventoryPage() {
         let loggedIn = driver.findElement(By.id("login-button")).click()
         let atInventoryPage = driver.get('https://www.saucedemo.com/inventory.html')

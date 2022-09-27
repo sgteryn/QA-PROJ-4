@@ -12,6 +12,7 @@ test('async await functionality', async () => {
     let value = await driver.findElement(By.id('rso')).getText()
     expect(value.toLowerCase()).toContain("puppies")
 })
+
 afterAll(async () => {
     await driver.quit()
 })

@@ -42,9 +42,9 @@ export class loginPage {
       await this.driver.wait(until.elementLocated(elementBy))
       return driver.findElement(elementBy).sendKeys(keys)
     }
-async getText(elementBy: By) {
-    await this.driver.wait(until.elementLocated(elementBy))
-    return this.driver.findElement(elementBy).getText()
+    async getText(elementBy: By) {
+      await this.driver.wait(until.elementLocated(elementBy))
+         return this.driver.findElement(elementBy).getText()
 }
 
 }
